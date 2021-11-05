@@ -90,13 +90,14 @@ def execmd(site, a ):
         #print("site:" + site)
         if(a%100==0):
            print("revisando sitio n" + str(a))
+
+        if(not proxyflag):
+           r = requests.get(site , timeout=(10,20), verify=False, allow_redirects=redirectsflag)
+        else:
         proxies = {
           "http": proxy,
           "https": proxy
 	}
-        if(not proxyflag):
-           r = requests.get(site , timeout=(10,20), verify=False, allow_redirects=redirectsflag)
-        else:
            r = requests.get(site , timeout=(10,20), verify=False, allow_redirects=redirectsflag,proxies=proxies)
         #print("code: " + str(r.status_code) + "text: \n" + r.text)
         textMatch = False
@@ -140,6 +141,7 @@ if __name__ == "__main__":
    redirectsflag = False
    errorsflag = False
    proxyflag=False
+   proxy=""
    for i in range(1,len(sys.argv)):
       if sys.argv[i] == '-rc' or sys.argv[i] == '--responsecode' :
          status = sys.argv[i+1].split(",")
