@@ -94,11 +94,11 @@ def execmd(site, a ):
         if(not proxyflag):
            r = requests.get(site , timeout=(10,20), verify=False, allow_redirects=redirectsflag)
         else:
-        proxies = {
-          "http": proxy,
-          "https": proxy
-	}
-           r = requests.get(site , timeout=(10,20), verify=False, allow_redirects=redirectsflag,proxies=proxies)
+            proxies = {
+              "http": proxy,
+              "https": proxy
+	    }
+            r = requests.get(site , timeout=(10,20), verify=False, allow_redirects=redirectsflag,proxies=proxies)
         #print("code: " + str(r.status_code) + "text: \n" + r.text)
         textMatch = False
         if( phraseflag ):
