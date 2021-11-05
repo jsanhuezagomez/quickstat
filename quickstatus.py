@@ -44,7 +44,7 @@ def main():
         else:
             revisar[c] = ""
     result = {}
-    print(revisar)
+    #print(revisar)
     a = 0
     totalSitios = len(revisar)
     print("total de sitios a revisar:" + str(totalSitios))
@@ -66,8 +66,11 @@ def main():
         for k in cleanResults:
             g.write(k + "," + str(cleanResults[k]) +"\n")
     else:
-        j = json.dumps(cleanResults)
-        print(j)
+        for k in cleanResults:
+            d={"url":k,"status":cleanResults[k]}
+            j=json.dumps(d)
+            
+            g.write(str(j) +"\n")
     g.close()
 
 
